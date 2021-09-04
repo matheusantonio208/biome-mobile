@@ -3,6 +3,9 @@ module.exports = {
     es2021: true,
   },
   extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
+  globals: {
+    __DEV__: 'readonly',
+  },
   parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
@@ -21,5 +24,12 @@ module.exports = {
       },
     ],
     'import/prefer-default-export': 'off',
+  },
+  settings: {
+    'import/resolver': {
+      'babel-plugin-root-import': {
+        rootPathSuffix: 'src',
+      },
+    },
   },
 };
