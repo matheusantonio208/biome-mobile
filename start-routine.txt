@@ -1,0 +1,19 @@
+[ x ] Plug Phone in USB
+[ x ] Start Containers Docker
+[ x ] Open Reactotron
+[ x ] Open MongoDB Compass
+[ x ] Connect [MongoDB Compass] mongodb://admin:root@localhost:27017/biome?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false
+
+[ x ] Open Vscode [biome],          [ x ] rename console with <<<'server-api'>>>,         [ ! ] run |:-| yarn dev |-:|
+[ x ] Open Vscode [biome-mobile]    [ x ] rename console with <<<'vpn-api'>>>             [ ! ] run |:-| yarn lt --port 3000 --subdomain application-mock-server |-:|
+[ x ] Add T-[ link ]-T received in file -> src \ services \ biomeApi.js
+
+[ x ] Create new console [bio-mobile], and rename with <<<'mobile-version'>>>
+
+[ x ] Run |:-| adb devices |-:|
+[ x ] Run |:-| adb reverse tcp:9090 tcp:9090 |-:|
+[ ! ] Run <<<'mobile-version'>>> |:-| yarn android |-:|
+
+
+
+

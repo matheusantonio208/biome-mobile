@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Keyboard, Text } from 'react-native';
 import BiomeAPI from '~/services/biomeApi';
-import { Container, Form, Input, Submit, SubmitText } from './singIn-styles';
+import { Container, Form } from './singIn-styles';
+
+import Input from '~/components/Input';
+import Submit from '~/components/Button';
 
 export default class SingUp extends Component {
   constructor(props) {
@@ -37,6 +40,8 @@ export default class SingUp extends Component {
         <Text>SingIn</Text>
         <Form>
           <Input
+            style={{ marginTop: 30 }}
+            icon="call"
             placeholder="your@email.com"
             onChangeText={(text) => this.setState({ userEmail: text })}
           />
@@ -46,9 +51,7 @@ export default class SingUp extends Component {
             returnKeyType="send"
             onSubmitEditing={this.handleSingIn}
           />
-          <Submit onPress={this.handleSingIn}>
-            <SubmitText>Login</SubmitText>
-          </Submit>
+          <Submit onPress={this.handleSingIn}>Login</Submit>
         </Form>
       </Container>
     );
