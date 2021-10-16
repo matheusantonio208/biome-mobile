@@ -1,7 +1,11 @@
+import { Platform } from 'react-native';
 import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 
-export const Container = styled.View`
+export const Container = styled.KeyboardAvoidingView.attrs({
+  enabled: Platform.OS === 'ios',
+  behaviour: 'padding',
+})`
   flex: 1;
   padding: 30px;
 `;
@@ -37,4 +41,14 @@ export const SubmitText = styled.Text`
   color: white;
   font-weight: bold;
   text-transform: uppercase;
+`;
+
+export const SignLink = styled.TouchableOpacity`
+  margin-top: 20px;
+`;
+
+export const SignLinkText = styled.Text`
+  color: #ccc;
+  font-weight: bold;
+  font-size: 16px;
 `;

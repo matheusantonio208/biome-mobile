@@ -1,59 +1,57 @@
-import React, { Component } from 'react';
-import { Keyboard, Text } from 'react-native';
-import BiomeAPI from '~/services/biomeApi';
-import { Container, Form } from './singIn-styles';
+import React, { useRef, useState } from 'react';
+import { Text } from 'react-native';
+
+import { useDispatch } from 'react-redux';
+import { signInRequest } from '../../behaviors/auth-agregador/auth-actions';
+
+import { Container, Form, SignLink, SignLinkText } from './singIn-styles';
 
 import Input from '~/components/Input';
 import Submit from '~/components/Button';
 
-export default class SingUp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userEmail: '',
-      userPassword: '',
-    };
+export default function SingIn({ navigation }) {
+  const dispatch = useDispatch();
+  const passwordRef = useRef();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleSubmit() {
+    dispatch(signInRequest(email, password));
   }
 
-  handleSingIn = async () => {
-    try {
-      const { userEmail, userPassword } = this.state;
+  return (
+    <Container>
+      <Text>SingIn</Text>
+      <Form>
+        <Input
+          style={{ marginTop: 30 }}
+          icon="mail-outline"
+          keyboardType="email-address"
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholder="Digite seu e-mail"
+          returnKeyType="next"
+          onSubmitEditing={() => passwordRef.current.focus()}
+          value={email}
+          onChangeText={setEmail}
+        />
+        <Input
+          icon="lock-outline"
+          secureTextEntry
+          placeholder="Sua senha"
+          ref={passwordRef}
+          returnKeyType="send"
+          onSubmitEditing={handleSubmit}
+          value={password}
+          onChangeText={setPassword}
+        />
+        <Submit onPress={handleSubmit}>Acessar</Submit>
+      </Form>
 
-      const userToken = await BiomeAPI.post(`/session/login`, {
-        email: userEmail,
-        password_hash: userPassword,
-      });
-
-      console.tron.log(userToken);
-      Keyboard.dismiss();
-    } catch (error) {
-      console.tron.log('Dont Login');
-      Keyboard.dismiss();
-    }
-  };
-
-  render() {
-    const { userEmail, userPassword } = this.state;
-
-    return (
-      <Container>
-        <Text>SingIn</Text>
-        <Form>
-          <Input
-            style={{ marginTop: 30 }}
-            icon="call"
-            placeholder="your@email.com"
-            onChangeText={(text) => this.setState({ userEmail: text })}
-          />
-          <Input
-            placeholder="******"
-            onChangeText={(text) => this.setState({ userPassword: text })}
-            returnKeyType="send"
-            onSubmitEditing={this.handleSingIn}
-          />
-          <Submit onPress={this.handleSingIn}>Login</Submit>
-        </Form>
-      </Container>
-    );
-  }
+      <SignLink onPress={() => navigation.navigate('SignUp')}>
+        <SignLinkText>Criar sua Conta</SignLinkText>
+      </SignLink>
+    </Container>
+  );
 }

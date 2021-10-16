@@ -1,54 +1,54 @@
-import React, { Component } from 'react';
-import { Keyboard } from 'react-native';
-import BiomeAPI from '~/services/biomeApi';
-import { Container, Form, Input, Submit, SubmitText } from './singUp-styles';
+import React, { useRef } from 'react';
+import { Text } from 'react-native';
+import { Container, Form, SignLink, SignLinkText } from './singUp-styles';
 
-export default class SingUp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userName: '',
-      userEmail: '',
-      userPassword: '',
-    };
-  }
+import Input from '~/components/Input';
+import Submit from '~/components/Button';
 
-  handleSingUp = async () => {
-    const { userName, userEmail, userPassword } = this.state;
+export default function SingIn({ navigation }) {
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
-    await BiomeAPI.post(`/user/registration`, {
-      name: userName,
-      email: userEmail,
-      password_hash: userPassword,
-    });
-    Keyboard.dismiss();
-  };
+  function handleSubmit() {}
 
-  render() {
-    const { userName, userEmail, userPassword } = this.state;
+  return (
+    <Container>
+      <Text>SingUp</Text>
+      <Form>
+        <Input
+          style={{ marginTop: 30 }}
+          icon="person-outline"
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholder="Nome completo"
+          returnKeyType="next"
+          onSubmitEditing={() => emailRef.current.focus()}
+        />
+        <Input
+          style={{ marginTop: 30 }}
+          icon="mail-outline"
+          keyboardType="email-address"
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholder="Digite seu e-mail"
+          ref={emailRef}
+          returnKeyType="next"
+          onSubmitEditing={() => passwordRef.current.focus()}
+        />
+        <Input
+          icon="lock-outline"
+          secureTextEntry
+          placeholder="Sua senha"
+          ref={passwordRef}
+          returnKeyType="send"
+          onSubmitEditing={handleSubmit}
+        />
+        <Submit onPress={handleSubmit}>Acessar</Submit>
+      </Form>
 
-    return (
-      <Container>
-        <Form>
-          <Input
-            placeholder="Your Name"
-            onChangeText={(text) => this.setState({ userName: text })}
-          />
-          <Input
-            placeholder="your@email.com"
-            onChangeText={(text) => this.setState({ userEmail: text })}
-          />
-          <Input
-            placeholder="******"
-            onChangeText={(text) => this.setState({ userPassword: text })}
-            returnKeyType="send"
-            onSubmitEditing={this.handleSingUp}
-          />
-          <Submit onPress={this.handleSingUp}>
-            <SubmitText>SingUp</SubmitText>
-          </Submit>
-        </Form>
-      </Container>
-    );
-  }
+      <SignLink onPress={() => navigation.navigate('SingIn')}>
+        <SignLinkText>Login</SignLinkText>
+      </SignLink>
+    </Container>
+  );
 }

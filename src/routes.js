@@ -21,7 +21,7 @@ export default function Routes() {
       >
         <Stack.Screen name="SingIn" component={SingIn} />
         <Stack.Screen name="WalletCreate" component={WalletCreate} />
-        <Stack.Screen name="SingUp" component={SingUp} />
+        <Stack.Screen name="SignUp" component={SingUp} />
       </Stack.Navigator>
     </NavigationContainer>
   );
