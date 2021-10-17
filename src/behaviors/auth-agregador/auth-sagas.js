@@ -26,11 +26,10 @@ export function* signUp({ payload }) {
   try {
     const { name, email, password } = payload;
 
-    yield call(api.post, 'user', 'registration', {
+    yield call(api.post, '/user/registration', {
       name,
       email,
-      password,
-      passwordConfirmation: password,
+      password_hash: password,
     });
   } catch (error) {
     Alert.alert(`Falha no cadastro, verifique seus dados! ${error}`);

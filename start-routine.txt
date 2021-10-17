@@ -4,7 +4,7 @@
 
 //\\ == Local DataBase == //\\
 
-04. Open MongoDB Compass
+04. Open MongoDB Compass ou https://account.mongodb.com/account/login
 05. Connect [MongoDB Compass] mongodb://admin:root@localhost:27017/biome?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false
 
 //\\ //\\ //\\ //\\ //\\ //\\ //\\ //\\ //\\

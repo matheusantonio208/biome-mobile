@@ -1,15 +1,27 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Text } from 'react-native';
+
+import { useDispatch } from 'react-redux';
+import { signUpRequest } from '../../behaviors/auth-agregador/auth-actions';
+
 import { Container, Form, SignLink, SignLinkText } from './singUp-styles';
 
 import Input from '~/components/Input';
 import Submit from '~/components/Button';
 
 export default function SingIn({ navigation }) {
-  const emailRef = useRef();
+  const dispatch = useDispatch();
+
+  // const emailRef = useRef();
   const passwordRef = useRef();
 
-  function handleSubmit() {}
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleSubmit() {
+    dispatch(signUpRequest(name, email, password));
+  }
 
   return (
     <Container>
@@ -22,7 +34,9 @@ export default function SingIn({ navigation }) {
           autoCapitalize="none"
           placeholder="Nome completo"
           returnKeyType="next"
-          onSubmitEditing={() => emailRef.current.focus()}
+          // onSubmitEditing={() => emailRef.current.focus()}
+          value={name}
+          onChangeText={setName}
         />
         <Input
           style={{ marginTop: 30 }}
@@ -31,9 +45,11 @@ export default function SingIn({ navigation }) {
           autoCorrect={false}
           autoCapitalize="none"
           placeholder="Digite seu e-mail"
-          ref={emailRef}
+          // ref={emailRef}
           returnKeyType="next"
           onSubmitEditing={() => passwordRef.current.focus()}
+          value={email}
+          onChangeText={setEmail}
         />
         <Input
           icon="lock-outline"
@@ -42,6 +58,8 @@ export default function SingIn({ navigation }) {
           ref={passwordRef}
           returnKeyType="send"
           onSubmitEditing={handleSubmit}
+          value={password}
+          onChangeText={setPassword}
         />
         <Submit onPress={handleSubmit}>Acessar</Submit>
       </Form>
