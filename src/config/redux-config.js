@@ -2,10 +2,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 
-import persistReducers from './persist-config';
+import rootReducer from '#views/behaviors/root-reducer.js';
+import rootSaga from '#views/behaviors/root-sagas.js';
 
-import rootReducer from '../behaviors/root-reducer';
-import rootSaga from '../behaviors/root-sagas';
+import persistReducers from './persist-config.js';
 
 const sagaMonitor = __DEV__ ? console.tron.createSagaMonitor() : null;
 

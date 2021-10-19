@@ -16,7 +16,7 @@
 07. Open Vscode [biome-mobile]
   7.1 rename console with <<<'vpn-api'>>>
   7.2 run |:-| yarn lt --port 3000 --subdomain application-mock-server |-:|
-08. Add T-[ link ]-T received in file -> src \ services \ biomeApi.js
+08. Add T-[ link ]-T received in file -> src \ services \ api.js
 
 09. Create new console [bio-mobile], and rename with <<<'mobile-version'>>>
 

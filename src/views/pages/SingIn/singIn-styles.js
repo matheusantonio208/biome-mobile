@@ -1,0 +1,56 @@
+import { Platform } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
+import styled from 'styled-components/native';
+
+export const Container = styled.KeyboardAvoidingView.attrs({
+  enabled: Platform.OS === 'ios',
+  behaviour: 'padding',
+})`
+  flex: 1;
+  padding: 30px;
+`;
+
+export const Headline = styled.Text``;
+
+export const Form = styled.View`
+  flex: 1;
+  padding-bottom: 20px;
+  border-bottom-width: 1px;
+  border-color: #eee;
+`;
+
+export const Input = styled.TextInput.attrs({
+  placeHolderTextColor: '#999',
+})`
+  flex: 1;
+  height: 40px;
+  background: #eee;
+  border-radius: 4px;
+  padding: 0 15px;
+  border: 1px solid #eee;
+`;
+
+export const Submit = styled(RectButton)`
+  justify-content: center;
+  align-items: center;
+  background: #7159c1;
+  border-radius: 4px;
+  margin-left: 10px;
+  padding: 24px 12px;
+`;
+
+export const SubmitText = styled.Text`
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+`;
+
+export const SignLink = styled.TouchableOpacity`
+  margin-top: 20px;
+`;
+
+export const SignLinkText = styled.Text`
+  color: #ccc;
+  font-weight: bold;
+  font-size: 16px;
+`;

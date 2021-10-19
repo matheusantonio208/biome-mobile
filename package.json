@@ -32,6 +32,13 @@
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
+    "eslint-config-airbnb-base": "^14.2.0",
+    "@babel/cli": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
+    "@babel/preset-env": "^7.11.5",
+    "eslint-plugin-import-helpers": "^1.1.0",
+
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",

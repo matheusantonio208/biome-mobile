@@ -4,7 +4,7 @@ import { persistReducer } from 'redux-persist';
 export default (reducers) => {
   const persistedReducer = persistReducer(
     {
-      key: 'root',
+      key: 'biome',
       storage: AsyncStorage,
       whitelist: ['auth', 'user'],
       timeout: 0,
