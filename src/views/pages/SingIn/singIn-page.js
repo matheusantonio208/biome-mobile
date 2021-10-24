@@ -1,13 +1,23 @@
 import React, { useRef, useState } from 'react';
-import { Text } from 'react-native';
+import { Image } from 'react-native';
 import { useDispatch } from 'react-redux';
 
-import Submit from '#components/Button/index.js';
 import Input from '#components/Input/index.js';
 
 import { signInRequest } from '#behaviors/auth-agregador/auth-actions.js';
 
-import { Container, Form, SignLink, SignLinkText } from './singIn-styles.js';
+import imageBackground from '../../../assets/img/taxi-signing-contract-1.png';
+import {
+  Container,
+  HeadlineContainer,
+  Headline,
+  TitlePage,
+  Form,
+  SignLink,
+  SignLinkText,
+  Submit,
+  TextButton,
+} from './singIn-styles.js';
 
 export default function SingIn({ navigation }) {
   const dispatch = useDispatch();
@@ -22,8 +32,23 @@ export default function SingIn({ navigation }) {
 
   return (
     <Container>
-      <Text>Olá! Que bom te-lo conosco novamente</Text>
+      <HeadlineContainer>
+        <Image
+          source={imageBackground}
+          style={{
+            height: 500,
+            position: 'absolute',
+            left: -250,
+            top: -100,
+            opacity: 0.8,
+            resizeMode: 'center',
+          }}
+          blurRadius={30}
+        />
+        <Headline>Olá! Que bom te-lo conosco novamente</Headline>
+      </HeadlineContainer>
       <Form>
+        <TitlePage>Acesse sua conta agora</TitlePage>
         <Input
           style={{ marginTop: 30 }}
           icon="mail-outline"
@@ -37,6 +62,7 @@ export default function SingIn({ navigation }) {
           onChangeText={setEmail}
         />
         <Input
+          style={{ marginTop: 10, marginBottom: 30 }}
           icon="lock-outline"
           secureTextEntry
           placeholder="Sua senha"
@@ -46,7 +72,9 @@ export default function SingIn({ navigation }) {
           value={password}
           onChangeText={setPassword}
         />
-        <Submit onPress={handleSubmit}>Acessar</Submit>
+        <Submit onPress={handleSubmit}>
+          <TextButton>ACESSAR AGORA</TextButton>
+        </Submit>
       </Form>
 
       <SignLink onPress={() => navigation.navigate('SignUp')}>
